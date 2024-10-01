@@ -121,5 +121,11 @@ def display_links(repo_link: str, article_link: str) -> None:
 Once everything is set up, you can run the app with the following command:
 
 ```bash
-streamlit run /path/to/rebranded-streamlit-forecasting-app/streamlit_prophet_env/lib/python3.8/site-packages/streamlit_prophet/app/dashboard.py OR streamlit_prophet deploy dashboard
+streamlit run /path/to/rebranded-streamlit-forecasting-app/streamlit_prophet_env/lib/python3.8/site-packages/streamlit_prophet/app/dashboard.py
+```
+
+## OR 
+
+```bash
+streamlit_prophet deploy dashboard
 ```
