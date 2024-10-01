@@ -1,97 +1,125 @@
-# rebranded-streamlit-forecasting-app
+# Rebranded Streamlit Forecasting App
 
-rebranded-streamlit-forecasting-app
+An interactive time series forecasting web app built using Streamlit and Facebook Prophet. Upload your data, visualize trends, and generate future forecasts with minimal code.
 
-To install and set up **Streamlit Prophet** in your folder `rebranded-streamlit-forecasting-app` using **VS Code** and **WSL**, follow these steps based on the provided documentation:
-
-### **Prerequisites**
-1. **Ensure Python 3.7, 3.8, or 3.9 is installed** in your WSL environment.
-   You can check the version by running:
-   ```bash
-   python3 --version
-   sudo apt update
-   sudo apt install python3.7
-   sudo apt install python3.7-venv
-   cd /path/to/rebranded-streamlit-forecasting-app
-   python3.7 -m venv streamlit_prophet_env
-   source streamlit_prophet_env/bin/activate
-   pip install -U pip
-   pip install streamlit_prophet
-   streamlit_prophet deploy dashboard
-
-   ```
-
-2. **Install WSL2** if you haven't already. Refer to this [WSL2 guide](https://docs.microsoft.com/en-us/windows/wsl/) for setting it up on your Windows machine.
+This project is a rebranded version of a Streamlit app for forecasting using **Prophet**. The app is deployed on **WSL** (Windows Subsystem for Linux) and includes customization options like links for support and improvement requests.
 
 ---
 
-### **Steps for Installation and Setup**
+## **Prerequisites**
+1. **Install Python 3.7, 3.8, or 3.9** in your WSL environment.
+   To check and set up the WSL environment with Python, follow the steps below:
 
-1. **Open VS Code with WSL**
+   ```bash
+   wsl --list --online
+   wsl --install -d Ubuntu-20.04
+   sudo apt update
+   sudo apt-get upgrade
+   python3 --version
+   cd /path/to/rebranded-streamlit-forecasting-app/
+   sudo apt install python3.8  # Only if Python 3.8 is not already installed
+   sudo apt install python3.8-venv
+   ```
 
-   Open your folder `rebranded-streamlit-forecasting-app` in VS Code and connect it to your WSL environment.
-
-   In VS Code, ensure the terminal is using WSL (you can switch the terminal by clicking the dropdown next to the terminal tab and selecting WSL).
-
-2. **Create and Navigate to Project Folder**
+2. **Set up a Python Virtual Environment**:
+   After ensuring Python is installed, create a virtual environment and activate it:
    
-   In your WSL terminal, navigate to the directory `rebranded-streamlit-forecasting-app`:
    ```bash
-   cd /path/to/rebranded-streamlit-forecasting-app
+   python3 -m venv streamlit_prophet_env
+   source streamlit_prophet_env/bin/activate
    ```
 
-3. **(Optional) Create a Virtual Environment**
-
-   It's recommended to create a virtual environment to avoid dependency conflicts. Choose one of the following methods:
-
-   **Using `conda`**:
+3. **Install Required Dependencies**:
+   Install essential libraries and Prophet along with the required packages:
+   
    ```bash
-   pip install conda
-   conda create -n streamlit_prophet python=3.7
-   conda activate streamlit_prophet
+   sudo apt install -y build-essential python3-dev libatlas-base-dev gfortran libssl-dev libcurl4-openssl-dev
+   pip install -U pip
+   pip install pystan==2.19.1.1
+   pip install altair==4.1.0
+   pip install prophet
+   python -c "from prophet import Prophet; print('Prophet installed successfully')"
    ```
 
-   **Using `virtualenv`**:
-   ```bash
-   pip install virtualenv
-   python3.7 -m virtualenv streamlit_prophet --python=python3.7
-   source streamlit_prophet/bin/activate
-   ```
-
-4. **Install the Package**
-
-   Install the package from PyPI using the following command:
-   ```bash
-   pip install -U streamlit_prophet
-   ```
-
-   Alternatively, you can install it from the GitHub repository's main branch:
+4. **Install Streamlit Prophet App**:
+   Clone and install the Streamlit Prophet app from GitHub:
+   
    ```bash
    pip install git+https://github.com/artefactory-global/streamlit_prophet.git@main
-   ```
-
-5. **Run the App**
-
-   After installing the package, you can launch the Streamlit app using this command:
-   ```bash
    streamlit_prophet deploy dashboard
    ```
 
-   This will open the app in your default web browser, allowing you to upload datasets, train, evaluate, and optimize your forecasting models.
+## **Customization**
 
-6. **Upload a Dataset**
+### **Logo Customization**
+To customize the logo used in the app, replace the existing logo file in the following location:
 
-   - Prepare a CSV file with a date column, target column, and optional features.
-   - Upload the dataset via the Streamlit UI and follow the guidelines on the app to forecast and optimize.
+```bash
+/path/to/rebranded-streamlit-forecasting-app/streamlit_prophet_env/lib/python3.8/site-packages/streamlit_prophet/references/logo.png
+```
 
----
+### **Link Customization**
 
-### **Post-Installation (Optional)**
+- **Logo file being used**:  
+  The logo file is loaded from the path above using the following code in the app:
 
-1. **Containerization with Docker**: 
-   If you want to containerize the app, follow the instructions provided in the [`DOCKER.md`](https://github.com/artefactory-global/streamlit_prophet/blob/main/DOCKER.md) file.
+  ```python
+  st.sidebar.image(load_image("logo.png"), use_column_width=True)
+  ```
 
-2. **Contribute or Extend**:
-   Feel free to contribute to the project. You can raise issues or make changes as suggested in the [`CONTRIBUTING.md`](https://github.com/artefactory-global/streamlit_prophet/blob/main/CONTRIBUTING.md) file.
+- **Links for Help and Improvement Requests**:  
+  The links for help and improvement requests are managed in the `config_readme.toml` file:
 
-By following these steps, you should be able to successfully install and run the Streamlit Prophet app in your `rebranded-streamlit-forecasting-app` folder using VS Code and WSL.
+  ```bash
+  /path/to/rebranded-streamlit-forecasting-app/streamlit_prophet_env/lib/python3.8/site-packages/streamlit_prophet/config/config_readme.toml
+  ```
+
+  Modify the email links as follows:
+
+  ```toml
+  [links]
+  # Email link for queries
+  help = "mailto:support@example.com?subject=Need%20Help%20on%20Streamlit%20Portal&cc=admin@example.com"
+
+  # Email link for improvement requests
+  improvement_request = "mailto:support@example.com?subject=Streamlit%20Improvement%20Request&cc=admin@example.com"
+  ```
+
+## **Display Links in the App**
+The `display_links` function is defined in the following file:
+
+```bash
+/path/to/rebranded-streamlit-forecasting-app/streamlit_prophet_env/lib/python3.8/site-packages/streamlit_prophet/lib/exposition/export.py
+```
+
+### **Display Links Code**:
+This function dynamically displays the "Need Help?" and "Suggest Improvements" links in the sidebar:
+
+```python
+def display_links(repo_link: str, article_link: str) -> None:
+    """Displays a repository and app links.
+
+    Parameters
+    ----------
+    repo_link : str
+        Link of git repository or email link.
+    article_link : str
+        Link of medium article or email link.
+    """
+    st.markdown(
+        f"""
+        <div style='display: flex; justify-content: center; gap: 20px;'>
+            <a style='text-decoration: none; color: #007bff;' href='{repo_link}'>Need help?</a>
+            <a style='text-decoration: none; color: #007bff;' href='{article_link}'>Suggest Improvements.</a>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+```
+
+## **Running the Application**
+Once everything is set up, you can run the app with the following command:
+
+```bash
+streamlit run /path/to/rebranded-streamlit-forecasting-app/streamlit_prophet_env/lib/python3.8/site-packages/streamlit_prophet/app/dashboard.py OR streamlit_prophet deploy dashboard
+```
